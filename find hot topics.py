@@ -1,10 +1,11 @@
+# derived from William Wang
 import os
-txt_dir = './split/pgs/txt/'
-files = os.listdir( './split/pgs/txt/' )
+txt_dir = './split/pgs/txt/' 
+files = os.listdir( './split/pgs/txt/' )  #Return a list containing the names of the entries in the directory given by path.
 
 sentences = []
 for fname in files:
-    fpath = os.path.join( txt_dir, fname )
+    fpath = os.path.join( txt_dir, fname )  #To get a full path (which begins with top) to a file or directory in dirpath
     with open( fpath ) as f:
         x = f.read().split('.')
         
@@ -17,9 +18,11 @@ print len( sentences )
 
 import collections
 import re
+#The module 'collections' implements specialized container datatypes providing alternatives to
+#Python’s general purpose built-in containers, dict, list, set, and tuple.
 
 
-sent_count = collections.Counter( sentences ).items()
+sent_count = collections.Counter( sentences ).items()   #?
 sent_count.sort( key=lambda x: x[1], reverse=True )
 long_count = [ i for i in sent_count if len( i[0] ) > 25 ]
 idx = 1
